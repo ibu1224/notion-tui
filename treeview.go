@@ -1,4 +1,3 @@
-// Demo code for the TreeView primitive.
 package main
 
 import (
@@ -10,7 +9,7 @@ import (
 )
 
 // Show a navigable tree view of the current directory.
-func treeView() string {
+func main() {
 	rootDir := "."
 	root := tview.NewTreeNode(rootDir).
 		SetColor(tcell.ColorRed)
@@ -40,24 +39,23 @@ func treeView() string {
 	add(root, rootDir)
 
 	// If a directory was selected, open it.
-	// tree.SetSelectedFunc(func(node *tview.TreeNode) {
-	// 	reference := node.GetReference()
-	// 	if reference == nil {
-	// 		return // Selecting the root node does nothing.
-	// 	}
-	// 	children := node.GetChildren()
-	// 	if len(children) == 0 {
-	// 		// Load and show files in this directory.
-	// 		path := reference.(string)
-	// 		add(node, path)
-	// 	} else {
-	// 		// Collapse if visible, expand if collapsed.
-	// 		node.SetExpanded(!node.IsExpanded())
-	// 	}
-	// })
+	tree.SetSelectedFunc(func(node *tview.TreeNode) {
+		reference := node.GetReference()
+		if reference == nil {
+			return // Selecting the root node does nothing.
+		}
+		children := node.GetChildren()
+		if len(children) == 0 {
+			// Load and show files in this directory.
+			path := reference.(string)
+			add(node, path)
+		} else {
+			// Collapse if visible, expand if collapsed.
+			node.SetExpanded(!node.IsExpanded())
+		}
+	})
 
 	if err := tview.NewApplication().SetRoot(tree, true).Run(); err != nil {
 		panic(err)
 	}
-	return "treeView"
 }
