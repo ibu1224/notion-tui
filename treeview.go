@@ -25,9 +25,10 @@ func Tree() (title string, content tview.Primitive) {
 
 	tree.SetSelectedFunc(func(node *tview.TreeNode) {
 		box.SetTitle(node.GetText())
+		app.SetFocus(box)
 	})
 
 	return "Tree", tview.NewFlex().AddItem((tree), 0, 1, true).
-			AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
-				AddItem(box, 0, 3, false), 0, 3, false)
+		AddItem(tview.NewFlex().SetDirection(tview.FlexRow).
+			AddItem(box, 0, 3, false), 0, 3, false)
 }
