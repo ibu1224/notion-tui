@@ -10,12 +10,12 @@ import (
 // The application.
 var app = tview.NewApplication()
 
+var layout = tview.NewFlex().
+	SetDirection(tview.FlexRow).
+	AddItem(Tree(), 0, 1, true)
+
 func main() {
-	content := Tree()
 	// Shortcuts to navigate the slides.
-	layout := tview.NewFlex().
-		SetDirection(tview.FlexRow).
-		AddItem(content, 0, 1, true)
 
 	app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Key() == tcell.KeyCtrlN {
