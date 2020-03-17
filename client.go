@@ -10,7 +10,7 @@ import (
 )
 
 func getPages() []interface{} {
-	var jsonStr = []byte(`{"space_id":"6be959a0-721f-479e-aa12-77f609a30eab"}`)
+	var jsonStr = []byte(`{"space_id":"03aa1ec9-6aff-4858-8f82-0c65624aa9e0"}`)
 	res, err := http.Post("http://127.0.0.1:5000/v1/api/pages", "application/json", bytes.NewBuffer(jsonStr))
 	if err != nil {
 		log.Fatal(err)
