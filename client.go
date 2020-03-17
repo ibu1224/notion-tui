@@ -58,27 +58,25 @@ func getPageContent(pageID string) []interface{} {
 }
 
 func createPageContent(pageID string, title string) {
-	var jsonStr = []byte(`{"page_id":"e4376ca0-5e61-401b-8fd2-878e2e6e68e4","title":"hoge"}`)
-	// titleKey := []byte(`{"title":`)
-	// var jsonStr = []byte(`{"page_id":`)
-	// jsonStr = append(jsonStr, `"`...)
-	// jsonStr = append(jsonStr, pageID...)
-	// jsonStr = append(jsonStr, `"`...)
-	// jsonStr = append(jsonStr, `,`...)
-	// jsonStr = append(jsonStr, titleKey...)
-	// jsonStr = append(jsonStr, `"`...)
-	// jsonStr = append(jsonStr, title...)
-	// jsonStr = append(jsonStr, `"`...)
-	// jsonStr = append(jsonStr, "}"...)
-
-	fmt.Printf("%s", jsonStr)
+	// var jsonStr = []byte(`{"page_id":"e4376ca0-5e61-401b-8fd2-878e2e6e68e4","title":"hoge"}`)
+	titleKey := []byte(`"title":`)
+	var jsonStr = []byte(`{"page_id":`)
+	jsonStr = append(jsonStr, `"`...)
+	jsonStr = append(jsonStr, pageID...)
+	jsonStr = append(jsonStr, `"`...)
+	jsonStr = append(jsonStr, `,`...)
+	jsonStr = append(jsonStr, titleKey...)
+	jsonStr = append(jsonStr, `"`...)
+	jsonStr = append(jsonStr, title...)
+	jsonStr = append(jsonStr, `"`...)
+	jsonStr = append(jsonStr, "}"...)
 
 	res, err := http.Post("http://127.0.0.1:5000/v1/api/page/block/new", "application/json", bytes.NewBuffer(jsonStr))
 	if err != nil {
 		log.Fatal(err)
 	}
 	// body
-	// defer res.Body.Close()
+	defer res.Body.Close()
 	// body, error := ioutil.ReadAll(res.Body)
 	// if error != nil {
 	// 	log.Fatal(error)

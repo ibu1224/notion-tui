@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/gdamore/tcell"
 	"github.com/rivo/tview"
@@ -35,15 +34,10 @@ func Tree() (content tview.Primitive) {
 		switch key {
 		case tcell.KeyEnter:
 			createPageContent(forcusId, inputField.GetText())
-			fmt.Println(strings.TrimSpace(inputField.GetText()))
+		case tcell.KeyEsc:
+			app.SetFocus(pageBlock)
 		}
 	})
-	// form := tview.NewForm().
-	// 	AddInputField("Message:", "", 256, nil, nil).
-	// 	AddButton("Save", func() { fmt.Print("button") })
-
-	// fmt.Println(form.GetFormItem(0).GetText())
-	// fmt.Println(reflect.TypeOf(form.GetFormItem(0).GetLabel()))
 
 	tree.SetSelectedFunc(func(node *tview.TreeNode) {
 		for _, page := range pages {
