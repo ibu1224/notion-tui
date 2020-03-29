@@ -4,6 +4,6 @@
 
 
 プログラムを起動するには、
-https://github.com/ibu1224/notion-apiこちらを起動しておいてください。
+https://github.com/ibu1224/notion-api こちらを起動しておいてください。
 
 `go build`で`./notion-tui`実行ファイルが生成されます。
